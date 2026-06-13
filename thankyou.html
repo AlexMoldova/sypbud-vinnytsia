@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дякуємо! — СИПБУД·ВІННИЦЯ</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-font-smoothing:antialiased}
+:root{
+  --bg:        #f4f6fa;
+  --bg-2:      #e8ecf3;
+  --panel:     #ffffff;
+  --line:      #d1d9e6;
+  --text:      #0f172a;
+  --text-dim:  #64748b;
+  --accent:    #e67e22;
+  --accent-2:  #d35400;
+  --accent-d:  #b84900;
+  --accent-glow: 230,126,34;
+  --green:     #2ecc71;
+  --font-d:    'Archivo Black', sans-serif;
+  --font-b:    'Manrope', sans-serif;
+}
+html,body{height:100%}
+body{
+  display:flex;align-items:center;justify-content:center;
+  background:var(--bg);color:var(--text);
+  font-family:var(--font-b);line-height:1.6;
+  padding:24px;
+}
+.card{
+  background:var(--panel);
+  border-radius:24px;
+  padding:56px 48px;
+  max-width:520px;
+  width:100%;
+  text-align:center;
+  box-shadow:0 20px 60px -12px rgba(0,0,0,.12);
+  position:relative;
+  overflow:hidden;
+}
+.card::before{
+  content:'';display:block;
+  height:6px;
+  background:linear-gradient(90deg,var(--accent),var(--green));
+  position:absolute;top:0;left:0;right:0;
+}
+.icon{
+  width:80px;height:80px;
+  background:rgba(46,204,113,.12);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+}
+.icon svg{width:40px;height:40px;stroke:var(--green);fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+h1{
+  font-family:var(--font-d);
+  font-size:28px;
+  margin-bottom:8px;
+  letter-spacing:-.01em;
+}
+p{
+  color:var(--text-dim);
+  font-size:16px;
+  margin-bottom:24px;
+}
+.info-box{
+  background:var(--bg-2);
+  border-radius:14px;
+  padding:16px 20px;
+  margin-bottom:28px;
+  font-size:14px;
+  color:var(--text-dim);
+  text-align:left;
+}
+.info-box strong{color:var(--text)}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 32px;
+  background:var(--accent);
+  color:#fff;
+  border-radius:12px;
+  font-family:var(--font-b);
+  font-size:15px;
+  font-weight:600;
+  text-decoration:none;
+  transition:background .25s, transform .25s;
+}
+.btn:hover{background:var(--accent-2);transform:translateY(-2px)}
+.btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.phone-link{
+  display:inline-block;
+  margin-top:20px;
+  color:var(--accent);
+  font-weight:700;
+  font-size:18px;
+  text-decoration:none;
+}
+.phone-link:hover{text-decoration:underline}
+
+@media(max-width:480px){
+  .card{padding:40px 24px}
+  h1{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+  <div class="icon">
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+
+  <h1>Дякуємо!</h1>
+  <p>Вашу заявку отримано. Ми передзвонимо вам <strong>протягом 5 хвилин</strong>.</p>
+
+  <div class="info-box">
+    <strong>Не дочекалися дзвінка?</strong><br>
+    Зателефонуйте нам прямо зараз:<br>
+    <a href="tel:+380672267917" style="color:var(--accent);font-weight:700;font-size:18px;text-decoration:none">+380 (67) 226 79 17</a>
+  </div>
+
+  <a href="/" class="btn">
+    <svg viewBox="0 0 24 24"><path d="M3 12l2-2 4 4 8-8 4 4"/></svg>
+    На головну
+  </a>
+
+  <br>
+  <a href="tel:+380672267917" class="phone-link">+380 67 226 79 17</a>
+</div>
+
+</body>
+</html>

@@ -2524,16 +2524,11 @@ document.querySelectorAll('.hero-stat-num').forEach(el=>{
     fetch('/handler.php', { method: 'POST', body: fd })
       .then(function(r){ return r.json(); })
       .then(function(data){
-        btn.disabled = false;
-        btn.innerHTML = orig;
         if (data.status === 'success') {
-          form.reset();
-          var note = document.createElement('div');
-          note.style.cssText = 'margin-top:16px;padding:14px 18px;background:var(--green,#2ecc71);color:#fff;border-radius:12px;font-weight:600;font-size:15px;text-align:center;';
-          note.textContent = '✅ Дякуємо! Заявку отримано. Передзвонимо за 5 хвилин.';
-          form.appendChild(note);
-          setTimeout(function(){ note.remove(); }, 6000);
+          window.location.href = '/thankyou.html';
         } else {
+          btn.disabled = false;
+          btn.innerHTML = orig;
           alert('Помилка: ' + data.message);
         }
       })
