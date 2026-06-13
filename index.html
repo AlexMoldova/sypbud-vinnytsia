@@ -2510,6 +2510,41 @@ document.querySelectorAll('.hero-stat-num').forEach(el=>{
   obs.observe(el);
 });
 
+// ─── Форма заявки (AJAX) ──────────────────────────────────────────
+(function(){
+  var form = document.getElementById('lead-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var btn = form.querySelector('button[type="submit"]');
+    var orig = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = 'Відправляємо…';
+    var fd = new FormData(form);
+    fetch('/handler.php', { method: 'POST', body: fd })
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        btn.disabled = false;
+        btn.innerHTML = orig;
+        if (data.status === 'success') {
+          form.reset();
+          var note = document.createElement('div');
+          note.style.cssText = 'margin-top:16px;padding:14px 18px;background:var(--green,#2ecc71);color:#fff;border-radius:12px;font-weight:600;font-size:15px;text-align:center;';
+          note.textContent = '✅ Дякуємо! Заявку отримано. Передзвонимо за 5 хвилин.';
+          form.appendChild(note);
+          setTimeout(function(){ note.remove(); }, 6000);
+        } else {
+          alert('Помилка: ' + data.message);
+        }
+      })
+      .catch(function(){
+        btn.disabled = false;
+        btn.innerHTML = orig;
+        alert('Помилка з\'єднання. Спробуйте ще раз.');
+      });
+  });
+})();
+
 // Diagnose horizontal overflow
 (function(){var e=document.body.getElementsByTagName('*'),w=window.innerWidth,d='';for(var i=0;i<e.length;i++){var r=e[i].getBoundingClientRect();if(r.right>w+1||r.left<-1){d+='<div style="background:red;color:#fff;padding:4px 8px;margin:2px 0;font-size:12px">['+e[i].tagName.toLowerCase()+(e[i].id?'#'+e[i].id:'')+(e[i].className?' .'+e[i].className.replace(/ /g,'.'):'')+'] right='+Math.round(r.right)+' left='+Math.round(r.left)+' width='+e[i].offsetWidth+'</div>'}}if(d){var p=document.createElement('div');p.style.cssText='position:fixed;top:0;left:0;z-index:99999;background:#000;color:#0f0;padding:10px;font-family:monospace;font-size:11px;max-height:80vh;overflow:auto';p.innerHTML='<b style="color:#f00">Overflow elements:</b><br>'+d;document.body.appendChild(p)}})();
 </script>
