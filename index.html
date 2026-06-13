@@ -2352,19 +2352,23 @@ footer{
     <div class="form-card reveal-right">
       <h3>Швидка заявка</h3>
       <p>Передзвонимо за 5 хвилин і обговоримо вашу задачу.</p>
-      <form id="lead-form" method="POST" action="/handler.php">
+      <form action="https://formsubmit.co/bespaluj2075092@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Нова заявка — СИПБУД ВІННИЦЯ">
+        <input type="hidden" name="_next" value="https://sypbud-vinnytsia.vn.ua/thankyou.html">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
 
         <div class="form-field">
           <label>Ваше ім'я</label>
-          <input type="text" name="Імʼя" placeholder="Як до вас звертатися" required>
+          <input type="text" name="name" placeholder="Як до вас звертатися" required>
         </div>
         <div class="form-field">
           <label>Телефон</label>
-          <input type="tel" name="Телефон" placeholder="+380 (67) 226 79 17" required>
+          <input type="tel" name="phone" placeholder="+380 (67) 226 79 17" required>
         </div>
         <div class="form-field">
           <label>Послуга</label>
-          <select name="Послуга">
+          <select name="service">
             <option>Доставка піску річкового</option>
             <option>Доставка щебню</option>
             <option>Доставка відсіву</option>
@@ -2376,7 +2380,7 @@ footer{
         </div>
         <div class="form-field">
           <label>Коментар</label>
-          <textarea name="Коментар" placeholder="Адреса, деталі, бажаний час..."></textarea>
+          <textarea name="comment" placeholder="Адреса, деталі, бажаний час..."></textarea>
         </div>
         <button type="submit">
           Надіслати заявку
@@ -2509,36 +2513,6 @@ document.querySelectorAll('.hero-stat-num').forEach(el=>{
   },{threshold:.5});
   obs.observe(el);
 });
-
-// ─── Форма заявки (AJAX) ──────────────────────────────────────────
-(function(){
-  var form = document.getElementById('lead-form');
-  if (!form) return;
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    var btn = form.querySelector('button[type="submit"]');
-    var orig = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = 'Відправляємо…';
-    var fd = new FormData(form);
-    fetch('/handler.php', { method: 'POST', body: fd })
-      .then(function(r){ return r.json(); })
-      .then(function(data){
-        if (data.status === 'success') {
-          window.location.href = '/thankyou.html';
-        } else {
-          btn.disabled = false;
-          btn.innerHTML = orig;
-          alert('Помилка: ' + data.message);
-        }
-      })
-      .catch(function(){
-        btn.disabled = false;
-        btn.innerHTML = orig;
-        alert('Помилка з\'єднання. Спробуйте ще раз.');
-      });
-  });
-})();
 
 // Diagnose horizontal overflow
 (function(){var e=document.body.getElementsByTagName('*'),w=window.innerWidth,d='';for(var i=0;i<e.length;i++){var r=e[i].getBoundingClientRect();if(r.right>w+1||r.left<-1){d+='<div style="background:red;color:#fff;padding:4px 8px;margin:2px 0;font-size:12px">['+e[i].tagName.toLowerCase()+(e[i].id?'#'+e[i].id:'')+(e[i].className?' .'+e[i].className.replace(/ /g,'.'):'')+'] right='+Math.round(r.right)+' left='+Math.round(r.left)+' width='+e[i].offsetWidth+'</div>'}}if(d){var p=document.createElement('div');p.style.cssText='position:fixed;top:0;left:0;z-index:99999;background:#000;color:#0f0;padding:10px;font-family:monospace;font-size:11px;max-height:80vh;overflow:auto';p.innerHTML='<b style="color:#f00">Overflow elements:</b><br>'+d;document.body.appendChild(p)}})();
